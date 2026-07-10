@@ -759,7 +759,7 @@ img {
 .image-wrapper {
     position: relative;
     border-radius: var(--radius-lg);
-    /* overflow: hidden; Removed to prevent badges from clipping */
+    overflow: hidden; /* Restored to ensure clean image corner clipping */
     border: 6px solid var(--bg-white);
     background: var(--border-color);
     z-index: 2;
@@ -808,8 +808,8 @@ img {
 }
 
 .registration-badge {
-    top: 24px;
-    left: -20px;
+    top: 16px;
+    left: 16px; /* Moved inside the frame */
     background: rgba(13, 148, 136, 0.9);
     
     /* Entrance Animation */
@@ -827,8 +827,8 @@ img {
 }
 
 .clinic-badge {
-    bottom: 24px;
-    right: -20px;
+    bottom: 16px;
+    right: 16px; /* Moved inside the frame */
     background: rgba(15, 23, 42, 0.9);
 }
 

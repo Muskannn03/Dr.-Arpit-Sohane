@@ -182,6 +182,18 @@ img {
     border-bottom: 1px solid var(--border-color);
     padding: 12px 0;
     transition: var(--transition);
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: navEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes navEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .navbar.scrolled {
@@ -203,6 +215,19 @@ img {
     display: flex;
     align-items: center;
     gap: 12px;
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: scale(0.9);
+    animation: logoEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 100ms;
+}
+
+@keyframes logoEnter {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .logo-icon {
@@ -244,6 +269,24 @@ img {
     font-size: 0.95rem;
     padding: 8px 4px;
     position: relative;
+    
+    /* Entrance base state */
+    opacity: 0;
+    transform: translateY(12px);
+    animation: linkEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.nav-menu a:nth-child(1) { animation-delay: 150ms; }
+.nav-menu a:nth-child(2) { animation-delay: 230ms; }
+.nav-menu a:nth-child(3) { animation-delay: 310ms; }
+.nav-menu a:nth-child(4) { animation-delay: 390ms; }
+.nav-menu a:nth-child(5) { animation-delay: 470ms; }
+
+@keyframes linkEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .nav-link:hover, .nav-link.active {
@@ -282,6 +325,15 @@ img {
     color: var(--primary);
     box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     transition: var(--transition);
+    
+    /* Entrance Animation */
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: 500ms;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
 .lang-toggle-btn:hover {
@@ -289,7 +341,7 @@ img {
     border-color: var(--primary);
 }
 
-.cta-btn {
+.navbar .cta-btn {
     background: var(--primary);
     color: var(--bg-white);
     padding: 10px 20px;
@@ -298,11 +350,24 @@ img {
     font-size: 0.9rem;
     gap: 8px;
     box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: scale(0.9);
+    animation: ctaEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; /* soft bounce */
+    animation-delay: 550ms;
 }
 
-.cta-btn:hover {
+@keyframes ctaEnter {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.navbar .cta-btn:hover {
     background: var(--primary-dark);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 6px 15px rgba(13, 148, 136, 0.3);
 }
 
@@ -351,14 +416,102 @@ img {
 
 /* Hero Section Styles */
 .hero {
+    position: relative;
     padding: 160px 0 100px 0;
-    background: radial-gradient(circle at 80% 20%, var(--primary-ultra-light) 0%, transparent 50%), var(--bg-light);
+    background: var(--bg-light);
     min-height: 100vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
+}
+
+/* Animated Background blobs */
+.hero-bg-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12; /* subtle 12% opacity */
+    animation: blobMove 25s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    top: 10%;
+    right: 10%;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+}
+
+.blob-2 {
+    bottom: 10%;
+    left: 5%;
+    background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+    animation-delay: -8s;
+}
+
+@keyframes blobMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(60px, -50px) scale(1.12);
+    }
+    100% {
+        transform: translate(-40px, 80px) scale(0.9);
+    }
+}
+
+/* Floating Medical Particles */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.medical-particle {
+    position: absolute;
+    color: var(--primary);
+    font-family: monospace;
+    font-weight: bold;
+    pointer-events: none;
+    animation: floatUp infinite linear;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--particle-opacity, 0.08);
+    }
+    90% {
+        opacity: var(--particle-opacity, 0.08);
+    }
+    100% {
+        transform: translateY(-90vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 .hero-container {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
@@ -366,6 +519,7 @@ img {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 24px;
+    z-index: 2;
 }
 
 @media (min-width: 992px) {
@@ -378,7 +532,20 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: badgeEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 200ms;
+}
+
+@keyframes badgeEnter {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .hero-badge {
@@ -403,18 +570,54 @@ img {
     border: 1px solid rgba(13, 148, 136, 0.2);
 }
 
+/* Reveal-up Headings */
 .hero-title {
     font-size: clamp(2rem, 5vw, 3.2rem);
     color: var(--text-dark);
-    margin-bottom: 20px;
-    line-height: 1.2;
+    margin-bottom: 24px;
+    line-height: 1.25;
+}
+
+.hero-title-line {
+    display: block;
+    overflow: hidden;
+}
+
+.reveal-text {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+    animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-title .line-1 .reveal-text { animation-delay: 300ms; }
+.hero-title .line-2 .reveal-text { animation-delay: 420ms; }
+
+@keyframes revealUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .hero-desc {
     font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     max-width: 600px;
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 720ms;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-stats {
@@ -429,7 +632,32 @@ img {
     padding: 16px;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateY(35px) scale(0.96);
     box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+    animation: statCardEnter 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    
+    /* Interactions */
+    transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 300ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.stat-card[style*="--card-index: 1"] { animation-delay: 900ms; }
+.stat-card[style*="--card-index: 2"] { animation-delay: 1020ms; }
+.stat-card[style*="--card-index: 3"] { animation-delay: 1140ms; }
+
+@keyframes statCardEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        box-shadow: var(--glass-shadow);
+    }
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(13, 148, 136, 0.08);
 }
 
 .stat-card h3 {
@@ -448,6 +676,24 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: fadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 1260ms;
+}
+
+.btn {
+    transition: transform 250ms cubic-bezier(0.25, 1, 0.5, 1), background-color 250ms, box-shadow 250ms;
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 25px rgba(13, 148, 136, 0.4);
 }
 
 .hero-image-container {
@@ -455,30 +701,53 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 1000px; /* enables 3D mouse tilt */
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+    animation: doctorCardEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 400ms;
+}
+
+@keyframes doctorCardEnter {
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
 }
 
 .image-wrapper {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     border: 6px solid var(--bg-white);
     background: var(--border-color);
     z-index: 2;
     aspect-ratio: 3/4;
     width: 100%;
     max-width: 380px;
+    
+    /* Floating Loop & Glowing Shadow */
+    box-shadow: 0 20px 50px rgba(13, 148, 136, 0.08);
+    animation: floatDoctorCard 5s ease-in-out infinite alternate;
+    animation-delay: 1.4s;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes floatDoctorCard {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-8px);
+    }
 }
 
 .hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
-}
-
-.hero-img:hover {
-    transform: scale(1.05);
 }
 
 .img-badge {
@@ -500,6 +769,19 @@ img {
     top: 20px;
     left: -15px;
     background: var(--primary);
+    
+    /* Entrance Animation */
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: badgeDrop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 900ms;
+}
+
+@keyframes badgeDrop {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .clinic-badge {
@@ -530,6 +812,26 @@ img {
     opacity: 0.4;
     filter: blur(40px);
     z-index: 0;
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .navbar, .nav-logo, .nav-link, .lang-toggle-btn, .navbar .cta-btn,
+    .badge-container, .reveal-text, .hero-desc,
+    .stat-card, .hero-actions, .hero-image-container,
+    .image-wrapper, .registration-badge, .blob, .medical-particle {
+        animation: none !important;
+        transform: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+    }
+    .reveal-text {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .image-wrapper {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+    }
 }
 
 /* About Section */

@@ -266,4 +266,66 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // -------------------------------------------------------------
+    // 7. Floating Medical Particles Spawner
+    // -------------------------------------------------------------
+    const particleContainer = document.getElementById('hero-particles');
+    if (particleContainer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const particleSymbols = ['+', '•', '◦', '✚'];
+        for (let i = 0; i < 10; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'medical-particle';
+            particle.textContent = particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
+            
+            // Random attributes
+            const leftVal = 65 + Math.random() * 30; // right side only
+            const topVal = Math.random() * 100;
+            const sizeVal = 10 + Math.random() * 16;
+            const opacityVal = 0.03 + Math.random() * 0.1;
+            const durationVal = 12 + Math.random() * 18;
+            const delayVal = Math.random() * -20;
+            
+            particle.style.left = `${leftVal}%`;
+            particle.style.top = `${topVal}%`;
+            particle.style.fontSize = `${sizeVal}px`;
+            particle.style.setProperty('--particle-opacity', opacityVal);
+            particle.style.animationDuration = `${durationVal}s`;
+            particle.style.animationDelay = `${delayVal}s`;
+            
+            particleContainer.appendChild(particle);
+        }
+    }
+
+    // -------------------------------------------------------------
+    // 8. Doctor Card Mouse Parallax 3D Tilt
+    // -------------------------------------------------------------
+    const imageContainer = document.querySelector('.hero-image-container');
+    
+    if (imageContainer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        imageContainer.addEventListener('mousemove', (e) => {
+            const rect = imageContainer.getBoundingClientRect();
+            // Get mouse position relative to container
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Convert to percentage offsets from center (-0.5 to 0.5)
+            const xPct = (x / rect.width) - 0.5;
+            const yPct = (y / rect.height) - 0.5;
+            
+            // Calculate tilt degrees (max 2.5 degrees)
+            const tiltY = xPct * 5; // horizontal mouse offset tilts around Y axis
+            const tiltX = -yPct * 5; // vertical mouse offset tilts around X axis
+            
+            // Apply transformation
+            imageContainer.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            imageContainer.style.transition = 'transform 0.1s ease-out';
+        });
+        
+        // Reset tilt on mouseleave
+        imageContainer.addEventListener('mouseleave', () => {
+            imageContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            imageContainer.style.transition = 'transform 0.5s ease-out';
+        });
+    }
 });

@@ -59,62 +59,71 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Background elements for smooth medical aesthetic -->
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="hero-particles" id="hero-particles"></div>
+
         <div class="hero-container">
             <div class="hero-content">
-                <div class="badge-container fade-in">
-                    <span class="hero-badge gold-badge">
+                <div class="badge-container">
+                    <span class="hero-badge gold-badge anim-badge-left">
                         <i class="fa-solid fa-medal"></i> 
                         <span class="en">Triple Gold Medalist</span>
                         <span class="hi">त्रिपल गोल्ड मेडलिस्ट</span>
                     </span>
-                    <span class="hero-badge practice-badge">
+                    <span class="hero-badge practice-badge anim-badge-right">
                         <i class="fa-solid fa-circle-check"></i>
                         <span class="en">DM Neonatology (Pune)</span>
                         <span class="hi">डीएम नियोनेटोलॉजी (पुणे)</span>
                     </span>
                 </div>
                 
-                <h1 class="hero-title fade-in">
-                    <span class="en">Caring for the Tiniest Miracles</span>
-                    <span class="hi">नन्हें शिशुओं की कुशल एवं स्नेहपूर्ण देखरेख</span>
+                <h1 class="hero-title">
+                    <span class="en hero-title-line line-1"><span class="reveal-text">Caring for the</span></span>
+                    <span class="en hero-title-line line-2"><span class="reveal-text">Tiniest Miracles</span></span>
+                    <span class="hi hero-title-line line-1"><span class="reveal-text">नन्हें शिशुओं की कुशल</span></span>
+                    <span class="hi hero-title-line line-2"><span class="reveal-text">एवं स्नेहपूर्ण देखरेख</span></span>
                 </h1>
                 
-                <p class="hero-desc fade-in">
+                <p class="hero-desc">
                     <span class="en">Dr. Arpit Sohane is a highly skilled, DM-trained Neonatologist specializing in Level III NICU care, advanced neonatal ventilation, point-of-care ultrasound (POCUS), and neonatal hemodynamics. Committed to providing advanced and evidence-based neonatal and pediatric care.</span>
                     <span class="hi">डॉ. अर्पित सोहाने एक अत्यंत कुशल, डी.एम. प्रशिक्षित नवजात शिशु रोग विशेषज्ञ हैं। वे लेवल III एन.आई.सी.यू. (NICU) देखभाल, उन्नत नवजात वेंटिलेशन, पॉइंट-ऑफ-केयर अल्ट्रासाउंड (POCUS), और नवजात हेमोडायनामिक्स में विशेषज्ञता रखते हैं।</span>
                 </p>
 
-                <div class="hero-stats fade-in">
-                    <div class="stat-card">
+                <div class="hero-stats">
+                    <div class="stat-card" style="--card-index: 1;">
                         <h3>60+</h3>
                         <p class="en">NICU Beds Managed</p>
                         <p class="hi">NICU बेड्स प्रबंधन</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" style="--card-index: 2;">
                         <h3>200k+</h3>
                         <p class="en">Transports (Radius km)</p>
                         <p class="hi">आपातकालीन शिशु परिवहन</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" style="--card-index: 3;">
                         <h3>7+</h3>
                         <p class="en">Publications & Research</p>
                         <p class="hi">शोध पत्र व प्रकाशन</p>
                     </div>
                 </div>
 
-                <div class="hero-actions fade-in">
-                    <a href="#services" class="btn btn-primary">
+                <div class="hero-actions">
+                    <a href="#services" class="btn btn-primary cta-primary">
                         <span class="en">Clinical Services</span>
                         <span class="hi">उपलब्ध चिकित्सा सेवाएं</span>
                     </a>
-                    <a href="#publications" class="btn btn-secondary">
+                    <a href="#publications" class="btn btn-secondary cta-secondary">
                         <span class="en">View Research & Publications</span>
                         <span class="hi">शोध व अनुसंधान देखें</span>
                     </a>
                 </div>
             </div>
-            <div class="hero-image-container fade-in">
-                <div class="image-wrapper">
+            <div class="hero-image-container">
+                <div class="image-wrapper animate-doctor-card">
                     <img src="doctor_profile.jpg" alt="Dr. Arpit Sohane" class="hero-img">
                     <div class="img-badge registration-badge">
                         <i class="fa-solid fa-clipboard-user"></i>

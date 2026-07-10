@@ -567,20 +567,24 @@ img {
 
     .hero-desc {
         font-size: 1.05rem;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
     }
 
     .hero-stats {
-        margin-bottom: 24px;
+        margin-bottom: 18px;
         gap: 12px;
     }
 
     .stat-card {
-        padding: 12px;
+        padding: 10px 14px;
     }
 
     .stat-card h3 {
-        font-size: clamp(2.2rem, 3.5vw, 2.75rem);
+        font-size: 1.95rem;
+    }
+
+    .stat-card p {
+        font-size: 0.85rem;
     }
 
     .image-wrapper {

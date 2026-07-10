@@ -43,8 +43,13 @@ body {
     font-family: var(--font-en);
     background-color: var(--bg-light);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.8;
+    letter-spacing: 0.015em;
     overflow-x: hidden;
+}
+
+p {
+    margin-bottom: 1.5rem;
 }
 
 /* Language Toggling rules */
@@ -58,7 +63,8 @@ body.lang-hi {
 h1, h2, h3, h4, h5, h6 {
     color: var(--text-dark);
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.45;
+    margin-bottom: 1.25rem;
 }
 
 a {
@@ -345,7 +351,7 @@ img {
 
 /* Hero Section Styles */
 .hero {
-    padding: 120px 0 60px 0;
+    padding: 160px 0 100px 0;
     background: radial-gradient(circle at 80% 20%, var(--primary-ultra-light) 0%, transparent 50%), var(--bg-light);
     min-height: 100vh;
     display: flex;
@@ -528,7 +534,7 @@ img {
 
 /* About Section */
 .about {
-    padding: 100px 0;
+    padding: 140px 0;
     background: var(--bg-white);
 }
 
@@ -558,7 +564,7 @@ img {
 .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 48px;
 }
 
 .about-card {
@@ -627,7 +633,7 @@ img {
 
 /* Education & Experience Section */
 .education-experience {
-    padding: 100px 0;
+    padding: 140px 0;
     background-color: var(--bg-light);
 }
 
@@ -658,7 +664,7 @@ img {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 35px;
+    margin-bottom: 48px;
 }
 
 .timeline-item:last-child {
@@ -737,19 +743,19 @@ img {
 }
 
 .timeline-details li {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
 /* Services Grid Section */
 .services {
-    padding: 100px 0;
+    padding: 140px 0;
     background-color: var(--bg-white);
 }
 
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    gap: 40px;
     margin-bottom: 50px;
 }
 
@@ -794,7 +800,7 @@ img {
 }
 
 .expert-tags-block h3 {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     font-size: 1.3rem;
 }
 
@@ -802,7 +808,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 16px;
 }
 
 .tag {
@@ -824,14 +830,14 @@ img {
 
 /* Certifications Section */
 .certifications {
-    padding: 100px 0;
+    padding: 140px 0;
     background-color: var(--bg-light);
 }
 
 .certs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    gap: 40px;
 }
 
 .cert-card {
@@ -869,7 +875,7 @@ img {
 
 /* Publications Section */
 .publications {
-    padding: 100px 0;
+    padding: 140px 0;
     background-color: var(--bg-white);
 }
 
@@ -882,7 +888,7 @@ img {
 .search-filter-controls {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     margin-bottom: 40px;
 }
 
@@ -953,7 +959,7 @@ img {
 .publications-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
 }
 
 .pub-card {
@@ -1046,14 +1052,14 @@ img {
 
 /* References Section */
 .references {
-    padding: 100px 0;
+    padding: 140px 0;
     background-color: var(--bg-light);
 }
 
 .references-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 48px;
 }
 
 @media (min-width: 992px) {
@@ -1082,7 +1088,7 @@ img {
     color: var(--text-muted);
     font-style: italic;
     margin-bottom: 24px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .ref-author h4 {
@@ -1105,14 +1111,14 @@ img {
 
 /* Contact & Schedule Section */
 .contact {
-    padding: 100px 0;
+    padding: 140px 0;
     background-color: var(--bg-white);
 }
 
 .contact-details-block {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 48px;
 }
 
 .info-card {

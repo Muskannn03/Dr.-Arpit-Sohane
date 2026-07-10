@@ -546,8 +546,10 @@ img {
     }
 
     .hero-title {
-        font-size: clamp(2rem, 3.8vw, 2.8rem);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2.4rem, 4.2vw, 3.4rem);
         margin-bottom: 12px;
+        line-height: 1.15;
     }
 
     .hero-desc {
@@ -617,10 +619,12 @@ img {
 
 /* Reveal-up Headings */
 .hero-title {
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 24px;
-    line-height: 1.25;
+    line-height: 1.2;
 }
 
 .hero-title-line {

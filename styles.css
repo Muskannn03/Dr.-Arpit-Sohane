@@ -759,7 +759,7 @@ img {
 .image-wrapper {
     position: relative;
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    /* overflow: hidden; Removed to prevent badges from clipping */
     border: 6px solid var(--bg-white);
     background: var(--border-color);
     z-index: 2;
@@ -787,27 +787,30 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 18px; /* matches card inner boundary to prevent overflow */
 }
 
 .img-badge {
     position: absolute;
-    background: var(--secondary);
     color: var(--bg-white);
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 30px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    gap: 10px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
     z-index: 3;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .registration-badge {
-    top: 20px;
-    left: -15px;
-    background: var(--primary);
+    top: 24px;
+    left: -20px;
+    background: rgba(13, 148, 136, 0.9);
     
     /* Entrance Animation */
     opacity: 0;
@@ -824,9 +827,9 @@ img {
 }
 
 .clinic-badge {
-    bottom: 20px;
-    right: -15px;
-    background: var(--secondary);
+    bottom: 24px;
+    right: -20px;
+    background: rgba(15, 23, 42, 0.9);
 }
 
 .image-decoration-1 {

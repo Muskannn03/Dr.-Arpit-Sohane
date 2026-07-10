@@ -21,7 +21,8 @@
     --glass-shadow: 0 10px 30px 0 rgba(13, 148, 136, 0.05);
     
     /* System font families */
-    --font-en: 'Times New Roman', Times, serif;
+    --font-en: 'Inter', sans-serif;
+    --font-headings: 'Plus Jakarta Sans', sans-serif;
     --font-hi: 'Noto Sans Devanagari', sans-serif;
     
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -42,14 +43,21 @@
 body {
     font-family: var(--font-en);
     background-color: var(--bg-light);
-    color: var(--text);
+    color: #64748B;
     line-height: 1.8;
-    letter-spacing: 0.015em;
+    letter-spacing: 0;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 p {
     margin-bottom: 1.5rem;
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.8;
+    color: #64748B;
+    max-width: 620px;
 }
 
 /* Language Toggling rules */
@@ -61,9 +69,10 @@ body.lang-hi {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--text-dark);
+    font-family: var(--font-headings);
+    color: #0F172A; /* Dark Navy */
     font-weight: 700;
-    line-height: 1.45;
+    line-height: 1.25;
     margin-bottom: 1.25rem;
 }
 
@@ -129,7 +138,7 @@ img {
     cursor: pointer;
     transition: var(--transition);
     gap: 8px;
-    font-size: 0.95rem;
+    font-size: 1rem; /* 16px */
     border: none;
 }
 
@@ -248,19 +257,20 @@ img {
 }
 
 .logo-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.45rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    letter-spacing: 0.02em;
+    font-family: var(--font-headings);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.5px;
     line-height: 1.15;
 }
 
 .logo-sub {
-    font-size: 0.65rem;
+    font-family: var(--font-en);
+    font-size: 0.68rem;
     color: var(--primary);
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     margin-top: 2px;
 }
@@ -270,11 +280,12 @@ img {
 }
 
 .nav-link {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 1rem; /* 16px */
     padding: 8px 4px;
     position: relative;
+    letter-spacing: 0;
     
     /* Entrance base state */
     opacity: 0;
@@ -546,10 +557,12 @@ img {
     }
 
     .hero-title {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+        font-family: var(--font-headings);
+        font-size: clamp(2.25rem, 4.5vw, 3.75rem); /* 36px to 60px */
+        font-weight: 800;
         margin-bottom: 12px;
-        line-height: 1.15;
+        line-height: 1.1;
+        letter-spacing: -2px;
     }
 
     .hero-desc {
@@ -567,7 +580,7 @@ img {
     }
 
     .stat-card h3 {
-        font-size: 1.6rem;
+        font-size: clamp(2.2rem, 3.5vw, 2.75rem);
     }
 
     .image-wrapper {
@@ -601,8 +614,9 @@ img {
     gap: 8px;
     padding: 6px 16px;
     border-radius: 30px;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 
 .gold-badge {
@@ -619,12 +633,13 @@ img {
 
 /* Reveal-up Headings */
 .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.4rem, 6vw, 3.8rem);
-    font-weight: 700;
-    color: var(--text-dark);
+    font-family: var(--font-headings);
+    font-size: clamp(2.25rem, 6vw, 4rem); /* 36px to 64px */
+    font-weight: 800;
+    color: #0F172A;
     margin-bottom: 24px;
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -2px;
 }
 
 .hero-title-line {
@@ -710,15 +725,16 @@ img {
 }
 
 .stat-card h3 {
-    font-size: 1.8rem;
+    font-size: clamp(2.5rem, 4.5vw, 3rem);
+    font-weight: 800;
     color: var(--primary);
     margin-bottom: 4px;
 }
 
 .stat-card p {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    font-weight: 600;
+    font-size: 1rem; /* 16px */
+    color: #64748B;
+    font-weight: 500;
 }
 
 .hero-actions {
@@ -805,8 +821,8 @@ img {
     color: var(--bg-white);
     padding: 10px 20px;
     border-radius: 30px;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -815,6 +831,7 @@ img {
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    letter-spacing: 0.2px;
 }
 
 .registration-badge {
@@ -947,7 +964,8 @@ img {
 }
 
 .about-card h3 {
-    font-size: 1.35rem;
+    font-size: 1.375rem; /* 22px */
+    font-weight: 600;
     margin-bottom: 16px;
 }
 
@@ -1135,7 +1153,8 @@ img {
 }
 
 .service-body h4 {
-    font-size: 1.2rem;
+    font-size: 1.375rem; /* 22px */
+    font-weight: 600;
     margin-bottom: 12px;
     color: var(--text-dark);
 }
@@ -1342,8 +1361,8 @@ img {
 }
 
 .pub-title {
-    font-size: 1.15rem;
-    color: var(--text-dark);
+    font-size: 1.375rem; /* 22px */
+    font-weight: 600;
     margin-bottom: 8px;
     line-height: 1.4;
 }
@@ -1670,11 +1689,11 @@ footer {
 }
 
 .footer-logo span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.65rem;
-    font-weight: 700;
+    font-family: var(--font-headings);
+    font-size: 1.45rem;
+    font-weight: 800;
     color: var(--bg-white);
-    letter-spacing: 0.02em;
+    letter-spacing: -0.5px;
 }
 
 .footer-desc {

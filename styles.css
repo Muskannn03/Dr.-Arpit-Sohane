@@ -927,7 +927,8 @@ img {
 }
 
 .section-subtitle {
-    margin-top: 16px;
+    margin: 16px auto 0 auto;
+    text-align: center;
     color: var(--text-muted);
     font-size: 1.05rem;
 }

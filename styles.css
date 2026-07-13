@@ -435,7 +435,8 @@ img {
 .hero {
     position: relative;
     padding: 160px 0 100px 0;
-    background: var(--bg-light);
+    background: linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)), url("hero_bg.png") no-repeat center center;
+    background-size: cover;
     min-height: 100vh;
     display: flex;
     align-items: center;

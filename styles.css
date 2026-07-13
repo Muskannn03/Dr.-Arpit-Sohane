@@ -928,16 +928,6 @@ img {
     background: rgba(15, 23, 42, 0.9);
 }
 
-.image-decoration-1 {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(var(--primary-light) 20%, transparent 20%);
-    background-size: 10px 10px;
-    z-index: 1;
-}
 
 .image-decoration-2 {
     position: absolute;

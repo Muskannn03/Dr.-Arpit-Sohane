@@ -190,7 +190,7 @@ img {
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1.5px solid rgba(13, 148, 136, 0.15);
     border-radius: 20px;
     padding: 10px 0;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -208,7 +208,7 @@ img {
 .navbar.scrolled {
     background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 10px 30px rgba(13, 148, 136, 0.06);
-    border: 1px solid rgba(13, 148, 136, 0.1);
+    border: 1.5px solid rgba(13, 148, 136, 0.25);
     transform: translate3d(-50%, 0, 0) scale(0.98);
 }
 

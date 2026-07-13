@@ -185,7 +185,7 @@ img {
     left: 50%;
     transform: translate3d(-50%, -20px, 0);
     width: calc(100% - 32px);
-    max-width: 1200px;
+    max-width: 1360px; /* Increased from 1200px for a more spacious layout */
     z-index: 1000;
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(20px);
@@ -216,6 +216,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap; /* Enforce strictly one line for all header contents */
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 24px;

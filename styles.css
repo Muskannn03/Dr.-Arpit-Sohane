@@ -457,6 +457,7 @@ img {
     opacity: 0.6; /* control background image opacity directly */
     z-index: 0;
     pointer-events: none;
+    transform: scaleX(-1); /* Flip horizontally to shift the stethoscope to the right */
 }
 
 /* Animated Background blobs */

@@ -482,7 +482,10 @@
 
     <div class="card-container">
         <!-- Language Switcher -->
-        <button class="lang-switch" id="lang-toggle-card">हिन्दी</button>
+        <button class="lang-switch" id="lang-toggle-card" style="display: inline-flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-globe" style="font-size: 0.85rem;"></i>
+            <span class="card-lang-label">H</span>
+        </button>
 
         <!-- Profile Wrapper with breathing ring -->
         <div class="profile-img-wrapper">
@@ -599,15 +602,16 @@
     <!-- Scripting for Language Toggle & QR Modal -->
     <script>
         const langBtn = document.getElementById('lang-toggle-card');
+        const langLabel = langBtn.querySelector('.card-lang-label');
         const body = document.body;
 
         // Language toggle event listener
         langBtn.addEventListener('click', () => {
             body.classList.toggle('lang-hindi');
             if (body.classList.contains('lang-hindi')) {
-                langBtn.textContent = 'English';
+                langLabel.textContent = 'E';
             } else {
-                langBtn.textContent = 'हिन्दी';
+                langLabel.textContent = 'H';
             }
         });
 

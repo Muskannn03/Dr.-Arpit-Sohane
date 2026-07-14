@@ -50,28 +50,7 @@
             transform-style: preserve-3d;
         }
 
-        /* 3D Glowing Cyber Grid Canvas Background */
-        .grid-canvas {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: 
-                linear-gradient(rgba(13, 148, 136, 0.12) 1.5px, transparent 1.5px),
-                linear-gradient(90deg, rgba(13, 148, 136, 0.12) 1.5px, transparent 1.5px);
-            background-size: 55px 55px;
-            transform: rotateX(65deg) translateZ(-150px);
-            opacity: 0.85;
-            z-index: 1;
-            pointer-events: none;
-            animation: gridMove 24s linear infinite;
-        }
 
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 1000px; }
-        }
 
         /* Ambient Glowing Blobs */
         .ambient-blobs {
@@ -155,19 +134,7 @@
             to { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
         }
 
-        /* Reflection Sheen overlay */
-        .card-sheen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: var(--radius-lg);
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 15;
-            mix-blend-mode: screen;
-        }
+
 
         /* Language Toggle styling */
         .lang-switch {
@@ -569,9 +536,6 @@
 </head>
 <body>
 
-    <!-- Dynamic 3D Grid Canvas Background -->
-    <div class="grid-canvas"></div>
-
     <!-- Ambient background glows -->
     <div class="ambient-blobs">
         <div class="blob blob-1"></div>
@@ -580,7 +544,6 @@
 
     <!-- Glassmorphic holographic Card container -->
     <div class="card-container" id="tilt-card">
-        <div class="card-sheen"></div>
 
         <!-- Language Switcher -->
         <button class="lang-switch" id="lang-toggle-card" style="display: inline-flex; align-items: center; gap: 5px;">
@@ -764,7 +727,6 @@
 
         // 4. 3D Card Parallax Tilt & Floating Particles
         const card = document.getElementById('tilt-card');
-        const sheen = card.querySelector('.card-sheen');
         
         // Dynamic Particle Generator
         const particleSymbols = ['✚', '✦', '•', '✚'];
@@ -810,11 +772,6 @@
             
             card.style.transform = `rotateX(${rX}deg) rotateY(${rY}deg) translateZ(10px)`;
             
-            // Sheen reflection position shifting based on mouse coords
-            const sheenX = (e.clientX / w) * 100;
-            const sheenY = (e.clientY / h) * 100;
-            sheen.style.background = `radial-gradient(circle at ${sheenX}% ${sheenY}%, rgba(255,255,255,0.18) 0%, transparent 60%)`;
-            
             // Parallax shift floating particles in 3D
             particles.forEach(p => {
                 const zFactor = parseFloat(p.dataset.z) / 150;
@@ -828,7 +785,6 @@
         document.addEventListener('mouseleave', () => {
             card.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
             card.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
-            sheen.style.background = 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 60%)';
             particles.forEach(p => {
                 p.style.transform = `translate3d(0, 0, ${p.dataset.z}px) scale(1)`;
                 p.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';

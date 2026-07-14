@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+FN;CHARSET=UTF-8:Dr. Arpit Sohane
+N;CHARSET=UTF-8:Sohane;Arpit;Dr.;;
+ORG;CHARSET=UTF-8:Pediatrician & Neonatologist
+TITLE;CHARSET=UTF-8:DM Neonatology, MD Pediatrics, MBBS
+TEL;TYPE=CELL,VOICE:+919183464051
+EMAIL;CHARSET=UTF-8;type=WORK,INTERNET:arpit.sohane09@gmail.com
+URL;type=WORK:https://dr-arpit-sohane.vercel.app
+ADR;CHARSET=UTF-8;TYPE=WORK:;;Shop no. 6, Chandrika Vihar Apartment, Home Science College Rd, near Ashish Hospital, Napier Town;Jabalpur;Madhya Pradesh;482002;India
+NOTE;CHARSET=UTF-8:Triple Gold Medalist (DM Neonatology & MD Pediatrics) specializing in Level III NICU Care, Advanced Neonatal Ventilation, POCUS & Hemodynamics.
+END:VCARD

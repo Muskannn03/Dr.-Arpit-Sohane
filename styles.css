@@ -724,6 +724,12 @@ img {
 .hero-title-line {
     display: block;
     overflow: hidden;
+    padding: 0.05em 0;
+}
+
+.hero-title-line.hi {
+    padding: 0.18em 0; /* extra padding to prevent Devanagari vowel markers (matras) from cropping */
+    line-height: 1.35; /* comfortable line height for Hindi characters */
 }
 
 .reveal-text {

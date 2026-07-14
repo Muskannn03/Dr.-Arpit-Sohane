@@ -10,16 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDescHi = document.getElementById('modal-desc-hi');
 
     function setLanguage(lang) {
+        const langLabel = langToggle ? langToggle.querySelector('.lang-label') : null;
         if (lang === 'hi') {
             body.classList.remove('lang-en');
             body.classList.add('lang-hi');
             localStorage.setItem('prefLanguage', 'hi');
-            if (langToggle) langToggle.innerHTML = '<span class="hi-label">English</span>';
+            if (langLabel) langLabel.textContent = 'E';
         } else {
             body.classList.remove('lang-hi');
             body.classList.add('lang-en');
             localStorage.setItem('prefLanguage', 'en');
-            if (langToggle) langToggle.innerHTML = '<span class="en-label">हिन्दी</span>';
+            if (langLabel) langLabel.textContent = 'H';
         }
         // Update modal texts visibility if needed
         updateModalLanguage();

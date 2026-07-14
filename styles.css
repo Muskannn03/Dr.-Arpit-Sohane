@@ -63,6 +63,23 @@ p {
 /* Language Toggling rules */
 body.lang-en .hi { display: none !important; }
 body.lang-hi .en { display: none !important; }
+
+/* Smooth fade transition for language toggling */
+body.lang-hi .hi,
+body.lang-en .en {
+    animation: langFadeIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes langFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 body.lang-hi {
     font-family: var(--font-hi), var(--font-en);
 }
@@ -696,6 +713,12 @@ img {
     font-size: 0.875rem; /* 14px */
     font-weight: 600;
     letter-spacing: 0.2px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-badge:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.08);
 }
 
 .gold-badge {
@@ -781,6 +804,7 @@ img {
     padding: 16px;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
     
     /* Entrance Animation */
     opacity: 0;

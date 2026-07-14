@@ -368,4 +368,35 @@ Additional Info: ${messageText || 'None'}
             imageContainer.style.transition = 'transform 0.5s ease-out';
         });
     }
+
+    // -------------------------------------------------------------
+    // 9. Premium Page Transitions (Fade Transitions)
+    // -------------------------------------------------------------
+    const overlay = document.createElement('div');
+    overlay.className = 'page-transition-overlay';
+    document.body.appendChild(overlay);
+
+    // Fade out overlay on load
+    setTimeout(() => {
+        overlay.classList.add('fade-out');
+    }, 50);
+
+    // Intercept internal page link clicks
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        const target = link.getAttribute('target');
+
+        // Only transition for local HTML files (index.html, card.html)
+        if (href && (href === 'card.html' || href === 'index.html') && (!target || target !== '_blank')) {
+            e.preventDefault();
+            overlay.classList.remove('fade-out');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 350);
+        }
+    });
 });
+

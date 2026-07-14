@@ -470,6 +470,23 @@
         body.lang-hindi [lang="hi"].block {
             display: block;
         }
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #0f172a;
+            z-index: 9999;
+            opacity: 1;
+            pointer-events: all;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .page-transition-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -636,6 +653,36 @@
         qrModal.addEventListener('click', (e) => {
             if (e.target === qrModal) {
                 qrModal.classList.remove('active');
+            }
+        });
+
+        // -------------------------------------------------------------
+        // Page Transitions (Fade Transitions)
+        // -------------------------------------------------------------
+        const overlay = document.createElement('div');
+        overlay.className = 'page-transition-overlay';
+        document.body.appendChild(overlay);
+
+        // Fade out overlay on load
+        setTimeout(() => {
+            overlay.classList.add('fade-out');
+        }, 50);
+
+        // Intercept internal page link clicks
+        document.body.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (!link) return;
+
+            const href = link.getAttribute('href');
+            const target = link.getAttribute('target');
+
+            // Only transition for local HTML files (index.html, card.html)
+            if (href && (href === 'card.html' || href === 'index.html') && (!target || target !== '_blank')) {
+                e.preventDefault();
+                overlay.classList.remove('fade-out');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 350);
             }
         });
     </script>

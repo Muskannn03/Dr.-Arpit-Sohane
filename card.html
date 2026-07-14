@@ -8,7 +8,7 @@
     <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,10 +20,10 @@
             --primary-light: #f0fdfa;
             --text-dark: #0f172a;
             --text-muted: #64748b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border-color: #e2e8f0;
-            --radius: 16px;
+            --bg-white: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(255, 255, 255, 0.5);
+            --radius-lg: 24px;
+            --radius-md: 16px;
         }
 
         * {
@@ -35,102 +35,174 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            background: #0f172a; /* Sleek dark theme base */
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 16px;
+            padding: 24px 16px;
             color: var(--text-dark);
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Card Container optimized for mobile screens */
+        /* Ambient Glowing Blobs */
+        .ambient-blobs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 12s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(13, 148, 136, 0.35); /* brand teal */
+            top: -50px;
+            left: -50px;
+        }
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(30, 58, 138, 0.3); /* navy */
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.15); }
+        }
+
+        /* Glassmorphic Card Container */
         .card-container {
             width: 100%;
-            max-width: 420px;
-            background: rgba(255, 255, 255, 0.85);
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
-            border-radius: 24px;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-lg);
             padding: 32px 24px;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
             text-align: center;
             position: relative;
-            overflow: hidden;
-            animation: cardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            z-index: 10;
+            animation: cardEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes cardEnter {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(40px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* Language Toggle styling */
         .lang-switch {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 20px;
+            right: 20px;
             background: rgba(13, 148, 136, 0.08);
-            border: 1px solid rgba(13, 148, 136, 0.15);
-            padding: 6px 12px;
+            border: 1.5px solid rgba(13, 148, 136, 0.2);
+            padding: 6px 14px;
             border-radius: 20px;
             font-weight: 700;
             font-size: 0.75rem;
             color: var(--primary);
             cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 20;
         }
         .lang-switch:hover {
             background: var(--primary);
-            color: var(--bg-white);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
         }
 
         /* Profile Block */
         .profile-img-wrapper {
             position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 16px auto;
+            width: 116px;
+            height: 116px;
+            margin: 0 auto 20px auto;
         }
+        
+        /* Ring breathing animation */
+        .profile-ring {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            animation: ringBreathe 2.5s infinite ease-in-out;
+            opacity: 0.5;
+        }
+
+        @keyframes ringBreathe {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.04); opacity: 0.7; border-color: var(--primary-dark); }
+        }
+
         .profile-img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--bg-white);
-            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.15);
+            border: 4px solid var(--bg-white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
         }
+        
         .verified-badge {
             position: absolute;
             bottom: 4px;
             right: 4px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--bg-white);
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--bg-white);
+            border: 2.5px solid var(--bg-white);
             font-size: 0.75rem;
+            z-index: 3;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
 
         .doc-name {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
             margin-bottom: 4px;
             color: var(--text-dark);
+            letter-spacing: -0.5px;
         }
 
         .doc-title {
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.82rem;
+            font-weight: 700;
             color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             margin-bottom: 12px;
         }
 
@@ -143,16 +215,19 @@
             flex-wrap: wrap;
         }
         .badge {
-            background: var(--primary-light);
+            background: rgba(13, 148, 136, 0.06);
             color: var(--primary-dark);
             border: 1px solid rgba(13, 148, 136, 0.15);
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 12px;
             border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        /* Primary Call-To-Action (Save vCard) */
+        /* Save Contact Button with sliding shine animation */
         .save-contact-btn {
             display: flex;
             align-items: center;
@@ -162,27 +237,42 @@
             color: var(--bg-white);
             width: 100%;
             padding: 16px;
-            border-radius: var(--radius);
-            font-weight: 600;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 1rem;
             text-decoration: none;
-            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.3);
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.35);
             margin-bottom: 24px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            animation: pulseBtn 2s infinite;
+            overflow: hidden;
         }
+        
+        .save-contact-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(30deg);
+            transition: none;
+            animation: metallicShine 4s infinite linear;
+        }
+
+        @keyframes metallicShine {
+            0% { left: -60%; }
+            20% { left: 140%; }
+            100% { left: 140%; }
+        }
+
         .save-contact-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(13, 148, 136, 0.4);
+            box-shadow: 0 12px 30px rgba(13, 148, 136, 0.45);
         }
 
-        @keyframes pulseBtn {
-            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(13, 148, 136, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
-        }
-
-        /* Link buttons list */
+        /* Links list */
         .links-list {
             display: flex;
             flex-direction: column;
@@ -190,48 +280,174 @@
             width: 100%;
             margin-bottom: 28px;
         }
+        
         .link-item {
             display: flex;
             align-items: center;
             background: var(--bg-white);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid rgba(226, 232, 240, 0.8);
             padding: 14px 18px;
-            border-radius: var(--radius);
+            border-radius: var(--radius-md);
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
         }
-        .link-item i {
+        
+        .link-item i.action-icon {
             font-size: 1.25rem;
-            color: var(--primary);
             width: 32px;
             text-align: left;
+            transition: transform 0.3s ease;
         }
+        
+        /* Individual Platform Color Icons */
+        .link-item.phone i.action-icon { color: #3b82f6; }
+        .link-item.whatsapp i.action-icon { color: #25d366; }
+        .link-item.directions i.action-icon { color: #ea4335; }
+        .link-item.instagram i.action-icon { color: #e1306c; }
+        .link-item.website i.action-icon { color: var(--primary); }
+
         .link-item span {
             flex-grow: 1;
             text-align: left;
         }
+        
         .link-item .arrow-icon {
             font-size: 0.8rem;
             color: var(--text-muted);
             transition: transform 0.3s ease;
         }
+        
         .link-item:hover {
             border-color: var(--primary);
             background: var(--primary-light);
-            transform: translateX(4px);
+            transform: translate3d(6px, 0, 0);
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.08);
         }
+        
+        .link-item:hover i.action-icon {
+            transform: scale(1.15);
+        }
+        
         .link-item:hover .arrow-icon {
-            transform: translateX(4px);
+            transform: translate3d(4px, 0, 0);
+            color: var(--primary);
         }
 
-        /* Footer info */
+        /* QR Code Share Button */
+        .share-qr-btn {
+            background: rgba(15, 23, 42, 0.05);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: var(--text-dark);
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+        }
+        .share-qr-btn:hover {
+            background: var(--text-dark);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* QR Code Modal Box */
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 16px;
+        }
+        
+        .qr-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .qr-content {
+            background: var(--bg-white);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .qr-modal.active .qr-content {
+            transform: translateY(0) scale(1);
+        }
+        
+        .qr-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .qr-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        
+        .qr-image {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px auto;
+            display: block;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 8px;
+            background: white;
+        }
+        
+        .close-qr-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-qr-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+        }
+
+        /* Footer */
         .footer-logo {
             font-size: 0.75rem;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -241,7 +457,7 @@
             color: var(--primary);
         }
 
-        /* Bilingual helper */
+        /* Bilingual Switch Logic */
         [lang="hi"] {
             display: none;
         }
@@ -254,19 +470,23 @@
         body.lang-hindi [lang="hi"].block {
             display: block;
         }
-        body.lang-hindi [lang="hi"].flex {
-            display: flex;
-        }
     </style>
 </head>
 <body>
 
+    <!-- Ambient background glows -->
+    <div class="ambient-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
     <div class="card-container">
-        <!-- Language Selector Button -->
+        <!-- Language Switcher -->
         <button class="lang-switch" id="lang-toggle-card">हिन्दी</button>
 
-        <!-- Profile Block -->
+        <!-- Profile Wrapper with breathing ring -->
         <div class="profile-img-wrapper">
+            <div class="profile-ring"></div>
             <img src="doctor_profile.jpg" alt="Dr. Arpit Sohane" class="profile-img">
             <div class="verified-badge"><i class="fa-solid fa-circle-check"></i></div>
         </div>
@@ -277,27 +497,27 @@
         </h1>
         <p class="doc-title">
             <span lang="en">DM Neonatologist</span>
-            <span lang="hi">शिशु एवं नवजात रोग विशेषज्ञ</span>
+            <span lang="hi">नवजात शिशु रोग विशेषज्ञ</span>
         </p>
 
-        <!-- Badges -->
+        <!-- Doctor badges -->
         <div class="badge-row">
-            <span class="badge"><i class="fa-solid fa-medal"></i> <span lang="en">Gold Medalist</span><span lang="hi">स्वर्ण पदक विजेता</span></span>
-            <span class="badge"><i class="fa-solid fa-stethoscope"></i> MD, MBBS</span>
+            <span class="badge"><i class="fa-solid fa-medal"></i> <span lang="en">Gold Medalist</span><span lang="hi">गोल्ड मेडलिस्ट</span></span>
+            <span class="badge"><i class="fa-solid fa-stethoscope"></i> DM, MD, MBBS</span>
             <span class="badge"><i class="fa-solid fa-location-dot"></i> Jabalpur</span>
         </div>
 
-        <!-- Primary CTA: Save Contact directly -->
+        <!-- Primary CTA: Metallic shine Save Contact button -->
         <a href="dr_arpit_sohane.vcf" class="save-contact-btn" download>
-            <i class="fa-solid fa-address-card" style="font-size: 1.2rem;"></i>
+            <i class="fa-solid fa-address-card" style="font-size: 1.15rem;"></i>
             <span lang="en">Save Contact to Phone</span>
-            <span lang="hi">संपर्क नंबर फोन में सहेजें</span>
+            <span lang="hi">संपर्क विवरण सहेजें</span>
         </a>
 
-        <!-- Action Links list -->
+        <!-- Vertical Link Buttons List -->
         <div class="links-list">
-            <a href="tel:+919183464051" class="link-item">
-                <i class="fa-solid fa-phone"></i>
+            <a href="tel:+919183464051" class="link-item phone">
+                <i class="fa-solid fa-phone action-icon"></i>
                 <span>
                     <span lang="en">Call Clinic</span>
                     <span lang="hi">क्लिनिक पर कॉल करें</span>
@@ -305,8 +525,8 @@
                 <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="https://wa.me/919183464051?text=Hello%20Dr.%20Arpit%2C%20I%20would%20like%20to%20book%20an%20OPD%20appointment." target="_blank" rel="noopener" class="link-item">
-                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
+            <a href="https://wa.me/919183464051?text=Hello%20Dr.%20Arpit%2C%20I%20would%20like%20to%20book%20an%20OPD%20appointment." target="_blank" rel="noopener" class="link-item whatsapp">
+                <i class="fa-brands fa-whatsapp action-icon"></i>
                 <span>
                     <span lang="en">Chat on WhatsApp</span>
                     <span lang="hi">व्हाट्सएप पर चैट करें</span>
@@ -314,8 +534,8 @@
                 <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="https://share.google/qCkHwGabs3aoJds1T" target="_blank" rel="noopener" class="link-item">
-                <i class="fa-solid fa-map-location-dot" style="color: #ea4335;"></i>
+            <a href="https://share.google/qCkHwGabs3aoJds1T" target="_blank" rel="noopener" class="link-item directions">
+                <i class="fa-solid fa-map-location-dot action-icon"></i>
                 <span>
                     <span lang="en">Get Clinic Directions</span>
                     <span lang="hi">क्लिनिक का पता (गूगल मैप्स)</span>
@@ -323,8 +543,8 @@
                 <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="https://www.instagram.com/tiny.stetho?igsh=cm9nZGV6emhld2s%3D&utm_source=qr" target="_blank" rel="noopener" class="link-item">
-                <i class="fa-brands fa-instagram" style="color: #e1306c;"></i>
+            <a href="https://www.instagram.com/tiny.stetho?igsh=cm9nZGV6emhld2s%3D&utm_source=qr" target="_blank" rel="noopener" class="link-item instagram">
+                <i class="fa-brands fa-instagram action-icon"></i>
                 <span>
                     <span lang="en">Instagram (@tiny.stetho)</span>
                     <span lang="hi">इंस्टाग्राम (@tiny.stetho)</span>
@@ -332,8 +552,8 @@
                 <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="index.html" class="link-item">
-                <i class="fa-solid fa-globe"></i>
+            <a href="index.html" class="link-item website">
+                <i class="fa-solid fa-globe action-icon"></i>
                 <span>
                     <span lang="en">Visit Full Website</span>
                     <span lang="hi">मुख्य वेबसाइट पर जाएं</span>
@@ -342,24 +562,76 @@
             </a>
         </div>
 
-        <!-- Footer Logo -->
+        <!-- Share via QR Button -->
+        <button class="share-qr-btn" id="open-qr-btn">
+            <i class="fa-solid fa-qrcode"></i>
+            <span lang="en">Share Card via QR</span>
+            <span lang="hi">QR कोड द्वारा साझा करें</span>
+        </button>
+
+        <!-- Footer -->
         <div class="footer-logo">
             <i class="fa-solid fa-heart-pulse"></i>
             <span>Dr. Arpit Sohane &copy; 2026</span>
         </div>
     </div>
 
-    <!-- Toggle language javascript functionality -->
+    <!-- QR Code Scan Modal Box -->
+    <div class="qr-modal" id="qr-modal">
+        <div class="qr-content">
+            <h3 class="qr-title">
+                <span lang="en">Share Contact Card</span>
+                <span lang="hi">संपर्क कार्ड साझा करें</span>
+            </h3>
+            <p class="qr-desc">
+                <span lang="en">Scan this QR code on another phone to instantly load this digital visiting card.</span>
+                <span lang="hi">इस डिजिटल विजिटिंग कार्ड को तुरंत लोड करने के लिए दूसरे फोन पर इस QR कोड को स्कैन करें।</span>
+            </p>
+            <!-- Live QR code loading via api.qrserver.com for dynamic deployment URL -->
+            <img id="qr-img" src="" alt="QR Code" class="qr-image">
+            <button class="close-qr-btn" id="close-qr-btn">
+                <span lang="en">Close</span>
+                <span lang="hi">बंद करें</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripting for Language Toggle & QR Modal -->
     <script>
         const langBtn = document.getElementById('lang-toggle-card');
         const body = document.body;
 
+        // Language toggle event listener
         langBtn.addEventListener('click', () => {
             body.classList.toggle('lang-hindi');
             if (body.classList.contains('lang-hindi')) {
                 langBtn.textContent = 'English';
             } else {
                 langBtn.textContent = 'हिन्दी';
+            }
+        });
+
+        // QR Code Modal handling
+        const openQrBtn = document.getElementById('open-qr-btn');
+        const closeQrBtn = document.getElementById('close-qr-btn');
+        const qrModal = document.getElementById('qr-modal');
+        const qrImg = document.getElementById('qr-img');
+
+        openQrBtn.addEventListener('click', () => {
+            // Get current browser page URL to generate dynamic QR code matching deployment link
+            const pageUrl = window.location.href;
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pageUrl)}`;
+            qrModal.classList.add('active');
+        });
+
+        closeQrBtn.addEventListener('click', () => {
+            qrModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside content area
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                qrModal.classList.remove('active');
             }
         });
     </script>

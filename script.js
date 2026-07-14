@@ -231,26 +231,65 @@ document.addEventListener('DOMContentLoaded', () => {
             const parentName = document.getElementById('parent-name').value;
             const babyName = document.getElementById('baby-name').value;
             const phoneNumber = document.getElementById('phone-number').value;
-            const reason = document.getElementById('reason').value;
+            const reasonSelect = document.getElementById('reason');
+            const reasonText = reasonSelect.options[reasonSelect.selectedIndex].text;
             const date = document.getElementById('pref-date').value;
+            const messageText = document.getElementById('message').value;
 
-            // Set phone numbers in modal
-            if (confirmPhone) confirmPhone.textContent = phoneNumber;
-            if (confirmPhoneHi) confirmPhoneHi.textContent = phoneNumber;
+            // Select submit button and show loading state
+            const submitBtn = appointmentForm.querySelector('button[type="submit"]');
+            const origContent = submitBtn.innerHTML;
+            const isHi = document.body.classList.contains('lang-hi');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = isHi ? 'भेजा जा रहा है...' : 'Sending Request...';
 
-            // Open Modal
-            confirmModal.classList.add('active');
-            
-            // Reset form
-            appointmentForm.reset();
-            if (prefDateInput) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                const yyyy = tomorrow.getFullYear();
-                const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-                const dd = String(tomorrow.getDate()).padStart(2, '0');
-                prefDateInput.value = `${yyyy}-${mm}-${dd}`;
-            }
+            const emailBody = `
+Reason for Visit: ${reasonText}
+Baby's Name/Age: ${babyName || 'Not specified'}
+Preferred Date: ${date}
+Additional Info: ${messageText || 'None'}
+            `;
+
+            // POST to serverless api endpoint
+            fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: parentName,
+                    phone: phoneNumber,
+                    message: emailBody
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Email sent status:', data);
+            })
+            .catch(err => {
+                console.error('Email error:', err);
+            })
+            .finally(() => {
+                // Restore submit button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = origContent;
+
+                // Set phone numbers in modal and open confirmation
+                if (confirmPhone) confirmPhone.textContent = phoneNumber;
+                if (confirmPhoneHi) confirmPhoneHi.textContent = phoneNumber;
+                confirmModal.classList.add('active');
+
+                // Reset form
+                appointmentForm.reset();
+                if (prefDateInput) {
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    const yyyy = tomorrow.getFullYear();
+                    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                    const dd = String(tomorrow.getDate()).padStart(2, '0');
+                    prefDateInput.value = `${yyyy}-${mm}-${dd}`;
+                }
+            });
         });
     }
 

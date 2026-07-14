@@ -1,0 +1,9 @@
+{
+  "name": "dr-arpit-sohane-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Dr. Arpit Sohane with serverless email functions",
+  "main": "index.html",
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}

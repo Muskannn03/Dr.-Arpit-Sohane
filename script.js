@@ -370,7 +370,37 @@ Additional Info: ${messageText || 'None'}
     }
 
     // -------------------------------------------------------------
-    // 9. Premium Page Transitions (Fade Transitions)
+    // 9. Statistics Card Smooth Count-Up Effect (1s duration)
+    // -------------------------------------------------------------
+    function animateCountUp(element, target, duration = 1000) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+            const currentValue = Math.floor(easedProgress * target);
+            element.textContent = `${currentValue}+`;
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Trigger count-up staggered with card entrance (approx 1s delay)
+    setTimeout(() => {
+        const statElements = document.querySelectorAll('.stat-card h3');
+        statElements.forEach(el => {
+            const text = el.textContent;
+            const num = parseInt(text.replace(/[^0-9]/g, ''), 10);
+            if (!isNaN(num)) {
+                animateCountUp(el, num, 1000);
+            }
+        });
+    }, 1000);
+
+    // -------------------------------------------------------------
+    // 10. Premium Page Transitions (Fade Transitions)
     // -------------------------------------------------------------
     const overlay = document.createElement('div');
     overlay.className = 'page-transition-overlay';

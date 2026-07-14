@@ -29,13 +29,13 @@ module.exports = async (req, res) => {
     const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
     const smtpPort = parseInt(process.env.SMTP_PORT || '465');
     const smtpSecure = process.env.SMTP_SECURE === 'false' ? false : true; // default true for port 465
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    const smtpUser = process.env.EMAIL_USER || process.env.SMTP_USER;
+    const smtpPass = process.env.USER_PASS || process.env.SMTP_PASS;
     const receiverEmail = process.env.RECEIVER_EMAIL || 'arpit.sohane09@gmail.com';
 
     if (!smtpUser || !smtpPass) {
         return res.status(500).json({
-            error: 'SMTP credentials are not configured. Please set SMTP_USER and SMTP_PASS environment variables.'
+            error: 'SMTP credentials are not configured. Please set EMAIL_USER and USER_PASS environment variables.'
         });
     }
 

@@ -291,6 +291,7 @@ img {
     border-radius: 20px;
     position: relative;
     letter-spacing: 0.2px;
+    white-space: nowrap; /* Prevent multi-line wrapping */
     transition: all 0.3s ease;
     
     /* Entrance base state */
@@ -366,6 +367,7 @@ img {
     font-size: 0.9rem;
     gap: 8px;
     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
+    white-space: nowrap; /* Prevent text wrapping inside CTA button */
     
     /* Entrance Animation */
     opacity: 0;

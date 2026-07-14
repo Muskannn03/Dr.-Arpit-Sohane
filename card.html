@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Arpit Sohane | Digital Business Card</title>
+    
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-dark: #0f766e;
+            --primary-light: #f0fdfa;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            color: var(--text-dark);
+        }
+
+        /* Card Container optimized for mobile screens */
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: cardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardEnter {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Language Toggle styling */
+        .lang-switch {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(13, 148, 136, 0.08);
+            border: 1px solid rgba(13, 148, 136, 0.15);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .lang-switch:hover {
+            background: var(--primary);
+            color: var(--bg-white);
+        }
+
+        /* Profile Block */
+        .profile-img-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 16px auto;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-white);
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.15);
+        }
+        .verified-badge {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: var(--primary);
+            color: var(--bg-white);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-white);
+            font-size: 0.75rem;
+        }
+
+        .doc-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .doc-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        /* Badges */
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid rgba(13, 148, 136, 0.15);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        /* Primary Call-To-Action (Save vCard) */
+        .save-contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--bg-white);
+            width: 100%;
+            padding: 16px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.3);
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: pulseBtn 2s infinite;
+        }
+        .save-contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(13, 148, 136, 0.4);
+        }
+
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(13, 148, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+        }
+
+        /* Link buttons list */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 28px;
+        }
+        .link-item {
+            display: flex;
+            align-items: center;
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .link-item i {
+            font-size: 1.25rem;
+            color: var(--primary);
+            width: 32px;
+            text-align: left;
+        }
+        .link-item span {
+            flex-grow: 1;
+            text-align: left;
+        }
+        .link-item .arrow-icon {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        .link-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateX(4px);
+        }
+        .link-item:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+        /* Footer info */
+        .footer-logo {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .footer-logo i {
+            color: var(--primary);
+        }
+
+        /* Bilingual helper */
+        [lang="hi"] {
+            display: none;
+        }
+        body.lang-hindi [lang="en"] {
+            display: none;
+        }
+        body.lang-hindi [lang="hi"] {
+            display: inline;
+        }
+        body.lang-hindi [lang="hi"].block {
+            display: block;
+        }
+        body.lang-hindi [lang="hi"].flex {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Language Selector Button -->
+        <button class="lang-switch" id="lang-toggle-card">हिन्दी</button>
+
+        <!-- Profile Block -->
+        <div class="profile-img-wrapper">
+            <img src="doctor_profile.jpg" alt="Dr. Arpit Sohane" class="profile-img">
+            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i></div>
+        </div>
+
+        <h1 class="doc-name">
+            <span lang="en">Dr. Arpit Sohane</span>
+            <span lang="hi">डॉ. अर्पित सोहाने</span>
+        </h1>
+        <p class="doc-title">
+            <span lang="en">DM Neonatologist</span>
+            <span lang="hi">शिशु एवं नवजात रोग विशेषज्ञ</span>
+        </p>
+
+        <!-- Badges -->
+        <div class="badge-row">
+            <span class="badge"><i class="fa-solid fa-medal"></i> <span lang="en">Gold Medalist</span><span lang="hi">स्वर्ण पदक विजेता</span></span>
+            <span class="badge"><i class="fa-solid fa-stethoscope"></i> MD, MBBS</span>
+            <span class="badge"><i class="fa-solid fa-location-dot"></i> Jabalpur</span>
+        </div>
+
+        <!-- Primary CTA: Save Contact directly -->
+        <a href="dr_arpit_sohane.vcf" class="save-contact-btn" download>
+            <i class="fa-solid fa-address-card" style="font-size: 1.2rem;"></i>
+            <span lang="en">Save Contact to Phone</span>
+            <span lang="hi">संपर्क नंबर फोन में सहेजें</span>
+        </a>
+
+        <!-- Action Links list -->
+        <div class="links-list">
+            <a href="tel:+919183464051" class="link-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>
+                    <span lang="en">Call Clinic</span>
+                    <span lang="hi">क्लिनिक पर कॉल करें</span>
+                </span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <a href="https://wa.me/919183464051?text=Hello%20Dr.%20Arpit%2C%20I%20would%20like%20to%20book%20an%20OPD%20appointment." target="_blank" rel="noopener" class="link-item">
+                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
+                <span>
+                    <span lang="en">Chat on WhatsApp</span>
+                    <span lang="hi">व्हाट्सएप पर चैट करें</span>
+                </span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <a href="https://share.google/qCkHwGabs3aoJds1T" target="_blank" rel="noopener" class="link-item">
+                <i class="fa-solid fa-map-location-dot" style="color: #ea4335;"></i>
+                <span>
+                    <span lang="en">Get Clinic Directions</span>
+                    <span lang="hi">क्लिनिक का पता (गूगल मैप्स)</span>
+                </span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <a href="https://www.instagram.com/tiny.stetho?igsh=cm9nZGV6emhld2s%3D&utm_source=qr" target="_blank" rel="noopener" class="link-item">
+                <i class="fa-brands fa-instagram" style="color: #e1306c;"></i>
+                <span>
+                    <span lang="en">Instagram (@tiny.stetho)</span>
+                    <span lang="hi">इंस्टाग्राम (@tiny.stetho)</span>
+                </span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <a href="index.html" class="link-item">
+                <i class="fa-solid fa-globe"></i>
+                <span>
+                    <span lang="en">Visit Full Website</span>
+                    <span lang="hi">मुख्य वेबसाइट पर जाएं</span>
+                </span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </a>
+        </div>
+
+        <!-- Footer Logo -->
+        <div class="footer-logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Dr. Arpit Sohane &copy; 2026</span>
+        </div>
+    </div>
+
+    <!-- Toggle language javascript functionality -->
+    <script>
+        const langBtn = document.getElementById('lang-toggle-card');
+        const body = document.body;
+
+        langBtn.addEventListener('click', () => {
+            body.classList.toggle('lang-hindi');
+            if (body.classList.contains('lang-hindi')) {
+                langBtn.textContent = 'English';
+            } else {
+                langBtn.textContent = 'हिन्दी';
+            }
+        });
+    </script>
+</body>
+</html>

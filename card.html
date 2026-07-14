@@ -35,7 +35,7 @@
         }
 
         body {
-            background: #090d16; /* Deep classy space theme */
+            background: linear-gradient(135deg, #f0fdfa 0%, #e2f8f5 50%, #e0f2fe 100%); /* Elegant light medical gradient */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -57,11 +57,11 @@
             width: 200%;
             height: 200%;
             background-image: 
-                linear-gradient(rgba(13, 148, 136, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(13, 148, 136, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: rotateX(60deg) translateZ(-200px);
-            opacity: 0.8;
+                linear-gradient(rgba(13, 148, 136, 0.15) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(13, 148, 136, 0.15) 1.5px, transparent 1.5px);
+            background-size: 55px 55px;
+            transform: rotateX(63deg) translateZ(-160px);
+            opacity: 0.95;
             z-index: 1;
             pointer-events: none;
             animation: gridMove 20s linear infinite;
@@ -95,7 +95,7 @@
         .blob-1 {
             width: 400px;
             height: 400px;
-            background: rgba(13, 148, 136, 0.3); /* brand teal */
+            background: rgba(13, 148, 136, 0.18); /* brand teal */
             top: -100px;
             left: -100px;
         }
@@ -103,7 +103,7 @@
         .blob-2 {
             width: 450px;
             height: 450px;
-            background: rgba(30, 58, 138, 0.25); /* deep navy */
+            background: rgba(30, 58, 138, 0.14); /* deep navy */
             bottom: -100px;
             right: -100px;
             animation-delay: -4s;
@@ -117,11 +117,11 @@
         /* 3D Floating Particles */
         .particle-3d {
             position: absolute;
-            color: rgba(13, 148, 136, 0.25);
+            color: rgba(13, 148, 136, 0.55);
             font-size: 1.5rem;
             pointer-events: none;
             z-index: 2;
-            filter: drop-shadow(0 0 8px rgba(13, 148, 136, 0.2));
+            filter: drop-shadow(0 4px 10px rgba(13, 148, 136, 0.25));
             transition: transform 0.2s ease-out;
         }
 
@@ -136,8 +136,9 @@
             border-radius: var(--radius-lg);
             padding: 32px 24px;
             box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+                0 35px 75px rgba(15, 23, 42, 0.15),
+                0 10px 25px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
             text-align: center;
             position: relative;
             z-index: 10;
